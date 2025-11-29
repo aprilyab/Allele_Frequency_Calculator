@@ -1,0 +1,3 @@
+galaxy_root: ~/galaxy  
+galaxy_port: 8080     
+database_connection: "postgresql://galaxy:Henokpostgresql@415@localhost/galaxy"
