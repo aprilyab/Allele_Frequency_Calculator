@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!-- Tool definition for Galaxy: Allele Frequency Calculator -->
+<tool id="allele_frequency_calculator" name="Allele Frequency Calculator" version="1.0.0">
+    <!-- Short description of the tool -->
+    <description>Compute per-SNP genotype counts and minor allele frequency (MAF).</description>
+
+    <!-- Software requirements -->
+    <requirements>
+        <requirement type="package" version="3.12">python</requirement> <!-- Python version -->
+        <requirement type="package">pandas</requirement> <!-- Pandas for data manipulation -->
+        <requirement type="package">numpy</requirement> <!-- NumPy for numerical computations -->
+    </requirements>
+
+    <!-- Command to run the tool -->
+    <command detect_errors="aggressive">
+    <![CDATA[
+    /home/henok/miniconda3/envs/gwas_tools/bin/python "$__tool_directory__/allele_frequency_calculator.py"
+        --genotypes "$genotypes"
+        #if $annotation
+        --annotation "$annotation" <!-- Optional annotation file -->
+        #end if
+        --output "$output"
+        --missing "$missing" <!-- Missing value code -->
+    ]]>
+    </command>
+
+    <!-- Input parameters for the tool -->
+    <inputs>
+        <param name="genotypes" type="data" format="tabular" label="Genotype File" help="TSV file containing samples x SNPs. Required."/>
+        <param name="annotation" type="data" format="tabular" label="SNP Annotation File (optional)" optional="true" help="TSV file with columns: snp_id, chrom, pos"/>
+        <param name="missing" type="text" label="Missing Value Code" value="NA" help="Character representing missing values (default: NA)"/>
+    </inputs>
+
+    <!-- Output parameters -->
+    <outputs>
+        <data name="output" format="tabular" label="Allele Frequency Results"/>
+    </outputs>
+
+    <!-- Test cases to validate the tool -->
+    <tests>
+        <test>
+            <param name="genotypes" value="/home/henok/Desktop/projects/galaxy/tools/Allele_Frequency_Calculator-2/test-data/genotypes.tsv"/>
+            <param name="annotation" value="/home/henok/Desktop/projects/galaxy/tools/Allele_Frequency_Calculator-2/test-data/snp_annotation.tsv"/> 
+            <param name="missing" value="NA"/>
+            <expect_file name="output" file="test-data/expected_output.tsv"/> <!-- Expected output for test validation -->
+        </test>
+    </tests>
+
+    <!-- Help section for users -->
+    <help>
+        This tool calculates allele frequencies (MAF) and genotype counts per SNP.
+        <p>Required inputs:</p>
+        <ul>
+            <li>Genotype file (samples x SNPs, TSV)</li>
+            <li>Output file (tabular)</li>
+        </ul>
+        <p>Optional inputs:</p>
+        <ul>
+            <li>SNP annotation file (TSV, columns: snp_id, chrom, pos)</li>
+            <li>Missing value code (default: NA)</li>
+        </ul>
+    </help>
+</tool>
