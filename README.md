@@ -3,7 +3,8 @@
 ## Overview
 The **Allele Frequency Calculator** is a Galaxy tool designed to calculate **per-SNP genotype counts** and **minor allele frequencies (MAF)** from genotype data in tabular (TSV) format. It is useful for genetic association studies, quality control of SNP data, and downstream population genetics analysis.
 
-Clone this repository: hg clone https://henok_yoseph@toolshed.g2.bx.psu.edu/repos/henok_yoseph/allele_frequency_calculator
+You can view or install the tool from the Galaxy Tool Shed here:  
+[Allele Frequency Calculator on Galaxy Tool Shed](https://toolshed.g2.bx.psu.edu/view/henok_yoseph/allele_frequency_calculator)
 ---
 
 ## Features
